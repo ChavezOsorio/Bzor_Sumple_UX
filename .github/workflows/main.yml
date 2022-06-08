@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches: [ "main" ]
+    branches: [ "master " ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master " ]
 
 
 
@@ -25,7 +25,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v2.1.0
-
+        
+      # publishes Blazor project to the release-folder
+      - name: Publish .NET Core Project
+        run: dotnet publish Bzor_Sumple_UX.csproj -c Release -o release --nologo
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
